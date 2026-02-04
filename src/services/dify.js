@@ -1,6 +1,7 @@
 
 // Dify API Integration
-const DIFY_BASE_URL = import.meta.env.VITE_DIFY_BASE_URL || 'https://dify.acesohealthy.com/v1'
+const rawBaseUrl = import.meta.env.VITE_DIFY_BASE_URL || 'https://dify.acesohealthy.com/v1'
+const DIFY_BASE_URL = rawBaseUrl.replace('http://', 'https://')
 const DIFY_API_KEY = import.meta.env.VITE_DIFY_API_KEY
 
 /**
