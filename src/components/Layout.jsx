@@ -25,16 +25,16 @@ function Layout() {
         try {
             const { error } = await updatePassword(newPassword)
             if (error) throw error
-            alert('Password updated successfully')
+            alert('密码修改成功')
             setIsPasswordModalOpen(false)
             setNewPassword('')
         } catch (err) {
-            alert('Error updating password: ' + err.message)
+            alert('密码修改失败: ' + err.message)
         }
     }
 
     const navItems = [
-        { name: 'Contacts', href: '/', icon: Home },
+        { name: '联系人', href: '/', icon: Home },
         // { name: 'Analytics', href: '/analytics', icon: BarChart3 }, // Future
     ]
 
@@ -63,14 +63,14 @@ function Layout() {
                                         className="w-full text-left px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2"
                                     >
                                         <Lock size={16} className="text-slate-400" />
-                                        Change Password
+                                        修改密码
                                     </button>
                                     <button
                                         onClick={handleSignOut}
                                         className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 border-t border-slate-100"
                                     >
                                         <LogOut size={16} className="text-red-400" />
-                                        Sign Out
+                                        退出登录
                                     </button>
                                 </div>
                             )}
@@ -78,7 +78,7 @@ function Layout() {
                     )}
 
                     <h1 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
-                        BizMemory
+                        说哪儿算哪儿
                     </h1>
                 </div>
             </nav>
@@ -95,14 +95,14 @@ function Layout() {
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
                     <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 space-y-4">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-lg font-bold text-slate-900">Change Password</h3>
+                            <h3 className="text-lg font-bold text-slate-900">修改密码</h3>
                             <button onClick={() => setIsPasswordModalOpen(false)} className="text-slate-400 hover:text-slate-600">
                                 <X size={20} />
                             </button>
                         </div>
                         <form onSubmit={handleChangePassword} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">New Password</label>
+                                <label className="block text-sm font-medium text-slate-700 mb-1">新密码</label>
                                 <input
                                     type="password"
                                     required
@@ -110,14 +110,14 @@ function Layout() {
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
                                     className="w-full rounded-lg border-slate-200 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Enter new password"
+                                    placeholder="请输入新密码"
                                 />
                             </div>
                             <button
                                 type="submit"
                                 className="w-full bg-primary-600 text-white py-2.5 rounded-lg font-medium hover:bg-primary-700 active:scale-[0.98] transition-all"
                             >
-                                Update Password
+                                更新密码
                             </button>
                         </form>
                     </div>

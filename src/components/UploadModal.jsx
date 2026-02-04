@@ -12,7 +12,7 @@ export default function UploadModal() {
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [uploading, setUploading] = useState(false)
-    const [statusText, setStatusText] = useState('Processing...')
+    const [statusText, setStatusText] = useState('正在处理...')
 
     useEffect(() => {
         const handleOpen = () => setIsOpen(true)
@@ -31,7 +31,7 @@ export default function UploadModal() {
     const handleUpload = async () => {
         if (!file || !user) return
         setUploading(true)
-        setStatusText('Uploading Image...')
+        setStatusText('正在上传图片...')
 
         try {
             // 1. Upload Image to Supabase Storage
@@ -48,7 +48,7 @@ export default function UploadModal() {
                 .getPublicUrl(fileName)
 
             // 2. Trigger Dify Analysis FIRST
-            setStatusText('Analyzing with AI...')
+            setStatusText('正在分析...')
 
             const { analyzeImage } = await import('../services/dify')
             const analysis = await analyzeImage(publicUrl, user.id)
@@ -112,7 +112,7 @@ export default function UploadModal() {
             }
 
 
-            setStatusText(`Saving to "${personName}"...`)
+            setStatusText(`正在保存到 "${personName}"...`)
 
             // 4. Find or Create Contact
             let contactId = null;
@@ -172,7 +172,7 @@ export default function UploadModal() {
             alert('Upload failed: ' + err.message)
         } finally {
             setUploading(false)
-            setStatusText('Processing...')
+            setStatusText('正在处理...')
         }
     }
 
@@ -204,7 +204,7 @@ export default function UploadModal() {
                         <Dialog.Panel className="mx-auto max-w-xl transform rounded-2xl bg-white p-6 shadow-2xl transition-all">
                             <div className="flex items-center justify-between mb-6">
                                 <Dialog.Title className="text-lg font-semibold text-slate-900">
-                                    Upload Record
+                                    上传记录
                                 </Dialog.Title>
                                 <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600">
                                     <X size={20} />
@@ -228,8 +228,8 @@ export default function UploadModal() {
                                             <div className="p-3 bg-primary-100 text-primary-600 rounded-full mb-3">
                                                 <Upload size={24} />
                                             </div>
-                                            <p className="text-sm font-medium text-slate-900">Click to upload image</p>
-                                            <p className="text-xs text-slate-500 mt-1">WeChat screenshots, documents, etc.</p>
+                                            <p className="text-sm font-medium text-slate-900">点击上传图片</p>
+                                            <p className="text-xs text-slate-500 mt-1">支持微信截图、文档图片等</p>
                                         </>
                                     )}
                                     <input id="file-upload" type="file" className="hidden" accept="image/*" onChange={handleFileChange} disabled={uploading} />
@@ -237,7 +237,7 @@ export default function UploadModal() {
 
                                 {/* Guidance Text */}
                                 <div className="text-xs text-slate-400 text-center italic">
-                                    * AI will analyze content and automatically organize it by person.
+                                    * AI 将自动分析内容并按联系人分类整理
                                 </div>
 
                                 {/* Action Buttons */}
@@ -248,7 +248,7 @@ export default function UploadModal() {
                                         onClick={() => setIsOpen(false)}
                                         disabled={uploading}
                                     >
-                                        Cancel
+                                        取消
                                     </button>
                                     <button
                                         type="button"
@@ -256,7 +256,7 @@ export default function UploadModal() {
                                         className="flex-1 rounded-lg bg-primary-600 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
                                         onClick={handleUpload}
                                     >
-                                        {uploading ? statusText : 'Upload & Analyze'}
+                                        {uploading ? statusText : '开始分析'}
                                     </button>
                                 </div>
                             </div>

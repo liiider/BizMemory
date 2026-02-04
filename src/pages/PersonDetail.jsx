@@ -46,7 +46,7 @@ export default function PersonDetail() {
     }
 
     const deletePerson = async () => {
-        if (!confirm('Are you sure you want to delete this person and all their history? This cannot be undone.')) return;
+        if (!confirm('确定要删除此人及其所有历史记录吗？此操作不可撤销。')) return;
 
         try {
             setLoading(true);
@@ -69,14 +69,14 @@ export default function PersonDetail() {
             navigate('/');
         } catch (e) {
             console.error('Delete error:', e);
-            alert('Error deleting person: ' + e.message);
+            alert('删除失败: ' + e.message);
             setLoading(false);
         }
     }
 
     const deleteRecord = async (recordId, e) => {
         e.stopPropagation(); // Prevent opening image
-        if (!confirm('Delete this record?')) return;
+        if (!confirm('确定删除此条记录吗？')) return;
 
         try {
             const { error } = await supabase
@@ -90,12 +90,12 @@ export default function PersonDetail() {
             setRecords(prev => prev.filter(r => r.id !== recordId));
         } catch (err) {
             console.error(err);
-            alert('Error deleting record');
+            alert('删除记录失败');
         }
     }
 
-    if (loading) return <div className="p-4 text-center text-slate-400">Loading profile...</div>
-    if (!person) return <div className="p-4 text-center">Person not found</div>
+    if (loading) return <div className="p-4 text-center text-slate-400">正在加载个人资料...</div>
+    if (!person) return <div className="p-4 text-center">未找到该联系人</div>
 
     return (
         <div className="space-y-6">
@@ -117,7 +117,7 @@ export default function PersonDetail() {
                                 else if (r.keywords) headerTags = r.keywords.split(/[ ,，]+/).filter(k => k.length > 0).slice(0, 5);
                             }
 
-                            if (headerTags.length === 0) return <span className="text-sm text-slate-400 italic">No tags</span>;
+                            if (headerTags.length === 0) return <span className="text-sm text-slate-400 italic">暂无标签</span>;
 
                             return headerTags.map((tag, idx) => (
                                 <span
@@ -133,7 +133,7 @@ export default function PersonDetail() {
                 <button
                     onClick={deletePerson}
                     className="ml-auto p-2 text-red-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
-                    title="Delete Person"
+                    title="删除联系人"
                 >
                     <Trash2 size={20} />
                 </button>
@@ -141,11 +141,11 @@ export default function PersonDetail() {
 
             {/* Records Timeline */}
             <div className="space-y-4">
-                <h2 className="text-sm font-semibold text-slate-900 px-1">History</h2>
+                <h2 className="text-sm font-semibold text-slate-900 px-1">历史记录</h2>
 
                 {records.length === 0 ? (
                     <div className="text-center py-8 bg-slate-50 rounded-xl border border-dashed border-slate-200">
-                        <p className="text-sm text-slate-400">No records yet.</p>
+                        <p className="text-sm text-slate-400">暂无记录。</p>
                     </div>
                 ) : (
                     records.map((record) => (
@@ -153,7 +153,7 @@ export default function PersonDetail() {
                             <button
                                 onClick={(e) => deleteRecord(record.id, e)}
                                 className="absolute top-2 right-2 p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-full z-10"
-                                title="Delete Record"
+                                title="删除记录"
                             >
                                 <Trash2 size={16} />
                             </button>
@@ -182,7 +182,7 @@ export default function PersonDetail() {
                                         if (result?.status === 'pending') {
                                             return (
                                                 <span className="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
-                                                    Analysis Pending
+                                                    正在分析...
                                                 </span>
                                             );
                                         }
@@ -212,7 +212,7 @@ export default function PersonDetail() {
                                             <div className="space-y-2">
                                                 {/* Summary */}
                                                 <p className="text-sm text-slate-700 leading-relaxed">
-                                                    {data.summary || data.text || rawText || "No summary available."}
+                                                    {data.summary || data.text || rawText || "暂无摘要。"}
                                                 </p>
                                             </div>
                                         )

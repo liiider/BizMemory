@@ -81,7 +81,7 @@ export default function Home() {
                         <input
                             type="text"
                             className="block w-full rounded-full border-0 py-3 pl-10 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                            placeholder="Search contacts..."
+                            placeholder="搜索联系人..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -98,15 +98,15 @@ export default function Home() {
 
             {/* Content */}
             {loading ? (
-                <div className="text-center py-12 text-slate-400">Loading contacts...</div>
+                <div className="text-center py-12 text-slate-400">正在加载联系人...</div>
             ) : filteredPeople.length === 0 ? (
                 <div className="text-center py-12">
                     <div className="mx-auto h-12 w-12 text-slate-300">
                         <Search className="h-full w-full" />
                     </div>
-                    <h3 className="mt-2 text-sm font-semibold text-slate-900">No contacts found</h3>
+                    <h3 className="mt-2 text-sm font-semibold text-slate-900">未找到联系人</h3>
                     <p className="mt-1 text-sm text-slate-500">
-                        {searchTerm ? 'Try a different search term' : 'Upload your first record to get started'}
+                        {searchTerm ? '尝试换个关键词搜索' : '上传第一张照片开始记录'}
                     </p>
                     {!searchTerm && (
                         <div className="mt-6">
@@ -115,7 +115,7 @@ export default function Home() {
                                 className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500"
                             >
                                 <Plus className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-                                New Upload
+                                上传记录
                             </button>
                         </div>
                     )}
@@ -169,7 +169,7 @@ export default function Home() {
                                     </div>
 
                                     <p className="mt-2 line-clamp-2 text-sm text-slate-600 leading-snug">
-                                        {person.summary || 'No recent activity.'}
+                                        {person.summary || '暂无最近活动。'}
                                     </p>
 
                                     {/* Labels / Tags */}
