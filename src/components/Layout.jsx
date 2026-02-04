@@ -1,7 +1,7 @@
 
 import { Fragment, useState } from 'react'
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { Home, User, PlusCircle, LogOut, Menu, X, Lock } from 'lucide-react'
+import { Home, User, PlusCircle, LogOut, Menu, X, Lock, Plus } from 'lucide-react'
 import { signOut, updatePassword } from '../services/auth'
 import clsx from 'clsx'
 import UploadModal from './UploadModal'
@@ -122,6 +122,17 @@ function Layout() {
                         </form>
                     </div>
                 </div>
+            )}
+
+            {/* Global Floating Action Button */}
+            {!isPasswordModalOpen && !isMenuOpen && location.pathname !== '/login' && (
+                <button
+                    onClick={() => document.dispatchEvent(new CustomEvent('open-upload-modal'))}
+                    className="fixed right-6 bottom-24 md:bottom-8 z-40 flex items-center justify-center w-14 h-14 bg-primary-600 text-white rounded-full shadow-2xl hover:bg-primary-500 active:scale-95 transition-all"
+                    title="上传记录"
+                >
+                    <Plus size={28} />
+                </button>
             )}
 
             <UploadModal />

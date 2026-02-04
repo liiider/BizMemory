@@ -32,8 +32,12 @@ export const analyzeImage = async (imageUrl, userId) => {
         }]
     }
 
+    // Force HTTPS to prevent Mixed Content errors
+    const targetUrl = `${DIFY_BASE_URL}/workflows/run`.replace('http://', 'https://')
+    console.log('Calling Dify URL:', targetUrl)
+
     try {
-        const response = await fetch(`${DIFY_BASE_URL}/workflows/run`, {
+        const response = await fetch(targetUrl, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${DIFY_API_KEY}`,

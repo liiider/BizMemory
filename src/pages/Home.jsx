@@ -86,13 +86,6 @@ export default function Home() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <button
-                        onClick={() => document.dispatchEvent(new CustomEvent('open-upload-modal'))}
-                        className="flex-shrink-0 inline-flex items-center justify-center rounded-full bg-primary-600 p-3 text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-                    >
-                        <Plus className="h-6 w-6" aria-hidden="true" />
-                    </button>
-
                 </div>
             </div>
 
@@ -106,19 +99,8 @@ export default function Home() {
                     </div>
                     <h3 className="mt-2 text-sm font-semibold text-slate-900">未找到联系人</h3>
                     <p className="mt-1 text-sm text-slate-500">
-                        {searchTerm ? '尝试换个关键词搜索' : '上传第一张照片开始记录'}
+                        {searchTerm ? '尝试换个关键词搜索' : '点击右下角按钮上传第一张照片'}
                     </p>
-                    {!searchTerm && (
-                        <div className="mt-6">
-                            <button
-                                onClick={() => document.dispatchEvent(new CustomEvent('open-upload-modal'))}
-                                className="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500"
-                            >
-                                <Plus className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
-                                上传记录
-                            </button>
-                        </div>
-                    )}
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
