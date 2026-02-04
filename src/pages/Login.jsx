@@ -16,9 +16,12 @@ export default function Login() {
         setError(null)
 
         try {
+            // Auto-append domain if user enters a simple username
+            const emailToUse = email.includes('@') ? email : `${email}@bizmemory.com`
+
             const { data, error } = isSignUp
-                ? await signUp(email, password)
-                : await signIn(email, password)
+                ? await signUp(emailToUse, password)
+                : await signIn(emailToUse, password)
 
             if (error) throw error
 
@@ -46,14 +49,14 @@ export default function Login() {
                 <form className="mt-8 space-y-6" onSubmit={handleAuth}>
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="email" className="sr-only">Email address</label>
+                            <label htmlFor="email" className="sr-only">Account</label>
                             <input
                                 id="email"
                                 name="email"
-                                type="email"
+                                type="text"
                                 required
                                 className="relative block w-full rounded-lg border-0 py-3 px-4 text-slate-900 ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 bg-slate-50/50"
-                                placeholder="Email address"
+                                placeholder="Account (Username)"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
