@@ -42,23 +42,19 @@ function Layout() {
         <div className="min-h-screen bg-slate-50 pb-20 md:pb-0">
             {/* Top Navigation (Desktop) */}
             <nav className="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-50">
-                <div className="max-w-5xl mx-auto flex justify-between items-center">
-                    <h1 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
-                        BizMemory
-                    </h1>
-
+                <div className="max-w-5xl mx-auto flex items-center gap-4">
                     {location.pathname === '/' && (
                         <div className="relative">
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+                                className="p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
                             >
                                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                             </button>
 
                             {/* Dropdown Menu */}
                             {isMenuOpen && (
-                                <div className="absolute right-0 top-12 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50 transform origin-top-right transition-all">
+                                <div className="absolute left-0 top-12 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50 transform origin-top-left transition-all">
                                     <button
                                         onClick={() => {
                                             setIsMenuOpen(false)
@@ -80,6 +76,10 @@ function Layout() {
                             )}
                         </div>
                     )}
+
+                    <h1 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
+                        BizMemory
+                    </h1>
                 </div>
             </nav>
 
