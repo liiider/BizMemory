@@ -25,3 +25,10 @@ export const getCurrentUser = async () => {
     const { data: { user } } = await supabase.auth.getUser()
     return user
 }
+
+export const updatePassword = async (newPassword) => {
+    const { data, error } = await supabase.auth.updateUser({
+        password: newPassword
+    })
+    return { data, error }
+}

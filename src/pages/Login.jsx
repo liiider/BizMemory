@@ -22,11 +22,8 @@ export default function Login() {
 
             if (error) throw error
 
-            if (!isSignUp) {
-                navigate('/')
-            } else {
-                alert('Check your email for the login link!')
-            }
+            if (error) throw error
+            navigate('/')
         } catch (err) {
             setError(err.message)
         } finally {
