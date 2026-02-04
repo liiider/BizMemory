@@ -1,7 +1,4 @@
-
-// Dify API Integration
-const rawBaseUrl = import.meta.env.VITE_DIFY_BASE_URL || 'https://dify.acesohealthy.com/v1'
-const DIFY_BASE_URL = rawBaseUrl.replace('http://', 'https://')
+// Dify API Integration - Use Proxy Path
 const DIFY_API_KEY = import.meta.env.VITE_DIFY_API_KEY
 
 /**
@@ -32,9 +29,9 @@ export const analyzeImage = async (imageUrl, userId) => {
         }]
     }
 
-    // Force HTTPS to prevent Mixed Content errors
-    const targetUrl = `${DIFY_BASE_URL}/workflows/run`.replace('http://', 'https://')
-    console.log('Calling Dify URL:', targetUrl)
+    // Use relative path to trigger proxy (Handles both Dev and Vercel)
+    const targetUrl = '/dify-api/workflows/run'
+    console.log('Calling Dify Proxy:', targetUrl)
 
     try {
         const response = await fetch(targetUrl, {

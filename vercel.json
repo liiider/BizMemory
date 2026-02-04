@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/dify-api/:path*",
+            "destination": "http://dify.acesohealthy.com/v1/:path*"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }

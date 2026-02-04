@@ -29,4 +29,14 @@ export default defineConfig({
       }
     })
   ],
+  server: {
+    host: true,
+    proxy: {
+      '/dify-api': {
+        target: 'http://dify.acesohealthy.com/v1',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/dify-api/, '')
+      }
+    }
+  }
 })
